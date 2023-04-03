@@ -18,11 +18,21 @@ from django.urls import path
 from django.urls import path, include
 from rest_framework import routers
 from cars.views import CarModelViewSet
+from usersandcarspark.views import *
 
 router = routers.DefaultRouter()
 router.register(r'carmodels', CarModelViewSet, basename='carmodels')
 
+router = routers.SimpleRouter()
+router.register(r'usersandcars', UsersViewSet)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include((router.urls, 'cars'), namespace='cars')),
+    #path('api/usersandcars/', UsersViewSet.as_view({'get': 'list'})),
+    #path('api/usersandcars/<int:pk>/', UsersViewSet.as_view({'put': 'update'})),
+
+    path('api/', include(router.urls, 'usersandcars')),
+    path('api/', include(router.urls, 'cars'))
+
 ]

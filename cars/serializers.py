@@ -1,14 +1,10 @@
 from rest_framework import serializers
 from .models import CarModel
 
-from rest_framework import serializers
-from .models import CarModel
-
 class CarModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarModel
         fields = ('id', 'car_brand', 'year_of_manufacture')
-      # fields = "__all__"
 
     def delete(self, instance):
         instance.delete()
