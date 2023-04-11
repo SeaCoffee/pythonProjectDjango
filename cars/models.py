@@ -6,3 +6,4 @@ class CarModel(models.Model):
     number_of_seats = models.IntegerField()
     body_type = models.CharField(max_length=100)
     engine_capacity = models.FloatField()
+    price = models.IntegerField()

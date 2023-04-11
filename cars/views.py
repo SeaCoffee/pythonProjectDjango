@@ -1,17 +1,25 @@
 from rest_framework.views import APIView
+from rest_framework.filters import RangeFilter
 
 from rest_framework import viewsets
 from .models import CarModel
 from .serializers import CarModelSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import viewsets
+from .models import CarModel
+from .serializers import CarModelSerializer
+from .filters import CarModelFilter
+from rest_framework import filters
+
 
 
 class CarModelViewSet(viewsets.ModelViewSet):
     queryset = CarModel.objects.all()
     serializer_class = CarModelSerializer
     list_serializer_class = CarModelSerializer
-
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_class = CarModelFilter
     def get_serializer_class(self):
         if self.action == 'list':
             return self.list_serializer_class
